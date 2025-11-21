@@ -22,6 +22,20 @@ struct SimplifyCopyView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
+                
+                
+                
+                // Back button
+                               HStack {
+                                   Button(action: {}) {
+                                       Image(systemName: "arrow.left")
+                                           .font(.system(size: 22))
+                                           .foregroundColor(.primary)
+                                   }
+                                   Spacer()
+                               }
+                               .padding(.horizontal, 20)
+                               .padding(.top, 8)
                 // Toggle switch at top
                 HStack {
                     Spacer()
