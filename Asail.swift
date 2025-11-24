@@ -4,6 +4,8 @@
 //
 //  Created by Asail abdulmohsin on 30/05/1447 AH.
 //
+
+/*
 import SwiftUI
 
 // Color extension to support hex colors
@@ -214,3 +216,4 @@ struct ModeToggle: View {
 #Preview {
     SimplifyCopyView()
 }
+*/
