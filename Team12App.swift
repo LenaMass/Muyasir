@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct Team12App: App {
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    
     var body: some Scene {
         WindowGroup {
             inputpage()
+                .environment(\.layoutDirection, .rightToLeft)
+                .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }
+

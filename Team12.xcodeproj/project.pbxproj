@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D27D08632ED0AC50004D164A /* Asail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D08622ED0AC42004D164A /* Asail.swift */; };
+		6CD9D6922ED8839E00CD9F58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CD9D68F2ED8839E00CD9F58 /* Assets.xcassets */; };
+		6CD9D6962ED8839E00CD9F58 /* Team12App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD9D6912ED8839E00CD9F58 /* Team12App.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,16 +29,45 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6CD9D68F2ED8839E00CD9F58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6CD9D6912ED8839E00CD9F58 /* Team12App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team12App.swift; sourceTree = "<group>"; };
 		BF95D0A52ECDEF1C0009F43A /* Team12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Team12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF95D0B22ECDEF1D0009F43A /* Team12Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team12Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF95D0BC2ECDEF1D0009F43A /* Team12UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team12UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D27D08622ED0AC42004D164A /* Asail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6CD9D6AD2ED8B14800CD9F58 /* Exceptions for "Model" folder in "Team12" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				InputPageViewModel.swift,
+				ResultViewModel.swift,
+			);
+			target = BF95D0A42ECDEF1C0009F43A /* Team12 */;
+		};
+		6CD9D6AE2ED8B14800CD9F58 /* Exceptions for "Model" folder in "Team12UITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				InputPageViewModel.swift,
+				ResultViewModel.swift,
+			);
+			target = BF95D0BB2ECDEF1D0009F43A /* Team12UITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		BF95D0A72ECDEF1C0009F43A /* Team12 */ = {
+		6CD9D6AC2ED8B13C00CD9F58 /* Model */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Team12;
+			exceptions = (
+				6CD9D6AD2ED8B14800CD9F58 /* Exceptions for "Model" folder in "Team12" target */,
+				6CD9D6AE2ED8B14800CD9F58 /* Exceptions for "Model" folder in "Team12UITests" target */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BF95D0A72ECDEF1C0009F43A /* View */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = View;
 			sourceTree = "<group>";
 		};
 		BF95D0B52ECDEF1D0009F43A /* Team12Tests */ = {
@@ -80,11 +110,13 @@
 		BF95D09C2ECDEF1C0009F43A = {
 			isa = PBXGroup;
 			children = (
-				BF95D0A72ECDEF1C0009F43A /* Team12 */,
+				6CD9D6912ED8839E00CD9F58 /* Team12App.swift */,
+				6CD9D68F2ED8839E00CD9F58 /* Assets.xcassets */,
+				6CD9D6AC2ED8B13C00CD9F58 /* Model */,
+				BF95D0A72ECDEF1C0009F43A /* View */,
 				BF95D0B52ECDEF1D0009F43A /* Team12Tests */,
 				BF95D0BF2ECDEF1D0009F43A /* Team12UITests */,
 				BF95D0A62ECDEF1C0009F43A /* asail */,
-				D27D08622ED0AC42004D164A /* Asail.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,7 +146,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				BF95D0A72ECDEF1C0009F43A /* Team12 */,
+				BF95D0A72ECDEF1C0009F43A /* View */,
 			);
 			name = Team12;
 			packageProductDependencies = (
@@ -160,6 +192,7 @@
 				BF95D0BE2ECDEF1D0009F43A /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				6CD9D6AC2ED8B13C00CD9F58 /* Model */,
 				BF95D0BF2ECDEF1D0009F43A /* Team12UITests */,
 			);
 			name = Team12UITests;
@@ -218,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CD9D6922ED8839E00CD9F58 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D27D08632ED0AC50004D164A /* Asail.swift in Sources */,
+				6CD9D6962ED8839E00CD9F58 /* Team12App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
