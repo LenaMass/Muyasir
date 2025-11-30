@@ -22,8 +22,8 @@ final class SimplifierService {
     static let shared = SimplifierService()
     private init() {}
     
-    private let endpoint = "http://127.0.0.1:9000/simplify"
-    
+    private let endpoint = "https://muyasir-backend.onrender.com/simplify"
+
     func simplify(text: String) async throws -> String {
         guard let url = URL(string: endpoint) else {
             throw SimplifierError.invalidURL
