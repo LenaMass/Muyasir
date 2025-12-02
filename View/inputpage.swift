@@ -158,14 +158,6 @@ struct inputpage: View {
             }
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("إغلاق") {
-                    isTextEditorFocused = false     // “Done” button on keyboard
-                }
-            }
-        }
     }
 }
 
