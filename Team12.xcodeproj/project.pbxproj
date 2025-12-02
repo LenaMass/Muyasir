@@ -43,7 +43,6 @@
 				HistoryStore.swift,
 				InputPageViewModel.swift,
 				Note.swift,
-				output.swift,
 				ResultViewModel.swift,
 			);
 			target = BF95D0A42ECDEF1C0009F43A /* Team12 */;
@@ -54,7 +53,6 @@
 				HistoryStore.swift,
 				InputPageViewModel.swift,
 				Note.swift,
-				output.swift,
 				ResultViewModel.swift,
 			);
 			target = BF95D0BB2ECDEF1D0009F43A /* Team12UITests */;
