@@ -3,29 +3,37 @@ import SwiftUI
 struct inputpage: View {
     @StateObject private var viewModel = InputPageViewModel()
     @AppStorage("isDarkMode") private var isDarkMode = false
-    
+    @State private var showHistory = false
+
     var body: some View {
         NavigationStack {
             VStack(spacing: 32) {
                 HStack {
-                    Button {
-                    } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 14)
-                                .fill(.ultraThinMaterial)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 14)
-                                        .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
-                                )
-                                .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
-                            
-                            Image(systemName: "book.fill")
-                                .font(.system(size: 20))
-                                .foregroundColor(.maingreen)
+                    ZStack {
+                        NavigationLink(destination: HistoryView(), isActive: $showHistory) {
+                            EmptyView()
                         }
-                        .frame(width: 40, height: 40)
+
+                        Button {
+                            showHistory = true
+                        } label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 14)
+                                    .fill(.ultraThinMaterial)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 14)
+                                            .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
+                                    )
+                                    .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
+                                
+                                Image(systemName: "book.fill")
+                                    .font(.system(size: 20))
+                                    .foregroundColor(.maingreen)
+                            }
+                            .frame(width: 40, height: 40)
+                        }
                     }
-                    
+
                     Spacer()
                     
                     Button {
