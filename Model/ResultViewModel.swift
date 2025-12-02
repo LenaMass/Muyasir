@@ -16,4 +16,18 @@ final class ResultViewModel: ObservableObject {
     init(simplifiedText: String) {
         self.outputText = simplifiedText
         self.isHandMode = false   }
+    func saveToHistory() {
+        let entry = HistoryEntry(
+            id: UUID().uuidString,
+            text: outputText,
+            date: Date(),
+            isFavorite: false
+        )
+        
+        var existing = HistoryStore.shared.load()
+        existing.insert(entry, at: 0)
+        HistoryStore.shared.save(existing)
+    }
+
+
 }

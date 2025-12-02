@@ -40,7 +40,9 @@
 		6CD9D6AD2ED8B14800CD9F58 /* Exceptions for "Model" folder in "Team12" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				HistoryStore.swift,
 				InputPageViewModel.swift,
+				Note.swift,
 				output.swift,
 				ResultViewModel.swift,
 			);
@@ -49,7 +51,9 @@
 		6CD9D6AE2ED8B14800CD9F58 /* Exceptions for "Model" folder in "Team12UITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				HistoryStore.swift,
 				InputPageViewModel.swift,
+				Note.swift,
 				output.swift,
 				ResultViewModel.swift,
 			);
@@ -65,6 +69,11 @@
 				6CD9D6AE2ED8B14800CD9F58 /* Exceptions for "Model" folder in "Team12UITests" target */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		93D8754B2EDF0B6B009623E9 /* ViewModel */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BF95D0A72ECDEF1C0009F43A /* View */ = {
@@ -112,6 +121,7 @@
 		BF95D09C2ECDEF1C0009F43A = {
 			isa = PBXGroup;
 			children = (
+				93D8754B2EDF0B6B009623E9 /* ViewModel */,
 				6CD9D6912ED8839E00CD9F58 /* Team12App.swift */,
 				6CD9D68F2ED8839E00CD9F58 /* Assets.xcassets */,
 				6CD9D6AC2ED8B13C00CD9F58 /* Model */,
@@ -148,6 +158,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				93D8754B2EDF0B6B009623E9 /* ViewModel */,
 				BF95D0A72ECDEF1C0009F43A /* View */,
 			);
 			name = Team12;
