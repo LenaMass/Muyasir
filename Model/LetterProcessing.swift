@@ -1,41 +1,17 @@
 //
-//  ResultViewModel.swift
+//  LetterProcessing.swift
 //  Team12
 //
-//  Created by Shahad Alharbi on 11/27/25.
+//  Created by leena almusharraf on 07/12/2025.
 //
 
-import Foundation
-import Combine
 
-@MainActor
-final class ResultViewModel: ObservableObject {
-    @Published var isHandMode: Bool = false
-    @Published var outputText: String
-    @Published var handLines: [[String]] = []
+import Foundation
+
+struct LetterProcessing {
     
-    init(simplifiedText: String) {
-        self.outputText = simplifiedText
-        self.isHandMode = false
-        processHandContent()
-    }
-    
-    func saveToHistory() {
-        let entry = HistoryEntry(
-            id: UUID().uuidString,
-            text: outputText,
-            date: Date(),
-            isFavorite: false
-        )
-        
-        var existing = HistoryStore.shared.load()
-        existing.insert(entry, at: 0)
-        HistoryStore.shared.save(existing)
-    }
-    
-    // MARK: - Letter processing merged
-    
-    private let letterMap: [String: String] = [
+    // MARK: - 1. قاموس التحويل من حرف → اسم صورة
+    static let map: [String: String] = [
         "ع": "aeen",
         "ال": "al",
         "ا": "alf",
@@ -75,12 +51,21 @@ final class ResultViewModel: ObservableObject {
         "ز": "za"
     ]
     
-    private func splitText(_ text: String) -> [String] {
+    // MARK: - استخراج اسم الصورة
+    static func imageName(for letter: String) -> String? {
+        return map[letter]
+    }
+    
+    
+    // MARK: - 2. تقسيم النص إلى حروف مع دعم "لا"
+    static func splitText(_ text: String) -> [String] {
         var letters: [String] = []
         let arr = Array(text)
         
         var index = 0
         while index < arr.count {
+            
+            // دعم "لا"
             if index < arr.count - 1 {
                 let pair = String(arr[index]) + String(arr[index + 1])
                 if pair == "لا" {
@@ -89,22 +74,12 @@ final class ResultViewModel: ObservableObject {
                     continue
                 }
             }
+            
+            // حرف واحد
             letters.append(String(arr[index]))
             index += 1
         }
+        
         return letters
-    }
-    
-    private func processHandContent() {
-        let words = outputText.split(separator: " ")
-        var allLines: [[String]] = []
-        
-        for word in words {
-            let letters = splitText(String(word))
-            let mapped = letters.compactMap { letterMap[$0] }
-            allLines.append(mapped)
-        }
-        
-        self.handLines = allLines
     }
 }
