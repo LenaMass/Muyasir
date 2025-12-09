@@ -19,7 +19,6 @@ struct ResultView: View {
                     
                     // Top bar
                     HStack {
-                        // Book icon -> History
                         NavigationLink(isActive: $navigateToHistory) {
                             HistoryView()
                         } label: {
@@ -42,7 +41,6 @@ struct ResultView: View {
                         
                         Spacer()
                         
-                        // Dark / light toggle
                         Button {
                             isDarkMode.toggle()
                         } label: {
@@ -67,7 +65,8 @@ struct ResultView: View {
                     .padding(.top, 20)
                     .padding(.bottom, 22)
                     
-                    // Toggle (doc vs hand)
+                    
+                    // Toggle
                     ZStack {
                         RoundedRectangle(cornerRadius: 22)
                             .fill(Color.maingreen.opacity(0.92))
@@ -132,7 +131,8 @@ struct ResultView: View {
                     .padding(.horizontal, 32)
                     .padding(.bottom, 16)
                     
-                    // Title (النتيجة)
+                    
+                    // Title
                     HStack(spacing: 6) {
                         ForEach(["ا", "ل", "ن", "ت", "ي", "ج", "ة"], id: \.self) { letter in
                             Image(letter)
@@ -144,7 +144,8 @@ struct ResultView: View {
                     .environment(\.layoutDirection, .rightToLeft)
                     .padding(.bottom, 18)
                     
-                    // Output area
+                    
+                    // Output / Hand mode
                     ZStack {
                         RoundedRectangle(cornerRadius: 26)
                             .fill(.ultraThinMaterial)
@@ -155,24 +156,40 @@ struct ResultView: View {
                             .shadow(color: Color.black.opacity(0.10), radius: 10, x: 0, y: 4)
                         
                         ScrollView {
-                            Text(viewModel.isHandMode ? "" : viewModel.outputText)
-                                .font(.system(size: 18))
-                                .foregroundColor(.primary)
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
+                            if viewModel.isHandMode {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    ForEach(viewModel.handLines.indices, id: \.self) { i in
+                                        HStack(spacing: 6) {
+                                            ForEach(viewModel.handLines[i], id: \.self) { img in
+                                                Image(img)
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 18, height: 18)
+                                            }
+                                        }
+                                    }
+                                }
                                 .padding()
-                                .accessibilityIdentifier("resultOutputText")
+                                .frame(maxWidth: .infinity, alignment: .leading)   // ← fix scroll
+                                
+                            } else {
+                                Text(viewModel.outputText)
+                                    .font(.system(size: 18))
+                                    .foregroundColor(.primary)
+                                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                                    .padding()
+                            }
                         }
                     }
                     .frame(maxWidth: .infinity)
                     .frame(height: 340)
                     .padding(.horizontal, 32)
                     
+                    
                     Spacer()
                     
-                    // Bottom actions: Save + Copy
                     VStack(spacing: 12) {
                         HStack(spacing: 16) {
-                          
                             Button {
                                 viewModel.saveToHistory()
                                 UIPasteboard.general.string = viewModel.outputText
@@ -196,7 +213,6 @@ struct ResultView: View {
                                     .fill(Color.maingreen)
                                     .shadow(color: Color.black.opacity(0.18), radius: 10, x: 0, y: 6)
                             )
-                            .accessibilityIdentifier("copyButton")
                         }
                         .padding(.horizontal, 32)
                         
@@ -205,7 +221,6 @@ struct ResultView: View {
                                 .font(.system(size: 32))
                                 .foregroundColor(.maingreen)
                                 .transition(.scale.combined(with: .opacity))
-                                .accessibilityIdentifier("copyFeedbackIcon")
                         }
                         
                         Spacer().frame(height: 12)

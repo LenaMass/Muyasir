@@ -4,6 +4,7 @@ struct inputpage: View {
     @StateObject private var viewModel = InputPageViewModel()
     @AppStorage("isDarkMode") private var isDarkMode = false
     @State private var showHistory = false
+    @FocusState private var isTextEditorFocused: Bool   // focus for keyboard
 
     var body: some View {
         NavigationStack {
@@ -37,7 +38,9 @@ struct inputpage: View {
                     Spacer()
                     
                     Button {
-                        isDarkMode.toggle()
+                        withAnimation(.easeInOut(duration: 0.25)) {
+                            isDarkMode.toggle()
+                        }
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 14)
@@ -75,10 +78,9 @@ struct inputpage: View {
                 .environment(\.layoutDirection, .rightToLeft)
                 .padding(.top, 10)
 
-                
                 ZStack(alignment: .topTrailing) {
                     RoundedRectangle(cornerRadius: 32, style: .continuous)
-                        .fill(Color.white)
+                        .fill(Color(.secondarySystemBackground)) // adaptive background
                         .shadow(color: .black.opacity(0.08), radius: 10, x: 0, y: 6)
                         .frame(height: 260)
                     
@@ -89,10 +91,12 @@ struct inputpage: View {
                         .scrollContentBackground(.hidden)
                         .background(Color.clear)
                         .multilineTextAlignment(.trailing)
+                        .foregroundColor(.primary)              // adaptive text color
+                        .focused($isTextEditorFocused)          // bind focus
                     
                     if viewModel.text.isEmpty {
                         Text("السلام عليكم ...")
-                            .foregroundColor(.lightgray)
+                            .foregroundColor(.secondary)        // adaptive placeholder
                             .padding(.top, 20)
                             .padding(.trailing, 24)
                             .frame(maxWidth: .infinity, alignment: .trailing)
@@ -147,10 +151,17 @@ struct inputpage: View {
                 }
             }
             .environment(\.layoutDirection, .rightToLeft)
+            .background(Color(.systemBackground))   // page background adapts
+            .contentShape(Rectangle())              // so taps hit empty areas too
+            .onTapGesture {
+                isTextEditorFocused = false         // tap outside to dismiss keyboard
+            }
         }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
     }
 }
 
 #Preview {
     inputpage()
 }
+
