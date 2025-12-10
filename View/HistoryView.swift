@@ -76,5 +76,7 @@ struct HistoryView: View {
             .background(Color(.systemBackground))
             .environment(\.layoutDirection, .rightToLeft)
         }
+        .navigationTitle("المحفوظات")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

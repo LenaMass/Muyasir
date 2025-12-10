@@ -202,7 +202,7 @@ struct ResultView: View {
                                     }
                                 }
                             } label: {
-                                Image(systemName: "doc.on.doc.fill")
+                                Image(systemName: "square.and.arrow.down")
                                     .font(.system(size: 24, weight: .medium))
                                     .foregroundColor(.white)
                                     .frame(maxWidth: .infinity)
@@ -231,6 +231,8 @@ struct ResultView: View {
             .environment(\.layoutDirection, .rightToLeft)
             .preferredColorScheme(isDarkMode ? .dark : .light)
         }
+        .navigationTitle("النتيجة")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

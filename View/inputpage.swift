@@ -34,8 +34,14 @@ struct inputpage: View {
                             .frame(width: 40, height: 40)
                         }
                     }
+                    Spacer()
+
+                    Text(" الإدخال")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(.primary)
 
                     Spacer()
+
                     
                     Button {
                         withAnimation(.easeInOut(duration: 0.25)) {
@@ -158,7 +164,9 @@ struct inputpage: View {
             }
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
+        
     }
+    
 }
 
 #Preview {
