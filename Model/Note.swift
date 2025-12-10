@@ -1,6 +1,5 @@
 //
 //  Note.swift
-//  Team12
 //
 //  Created by رحاب فهد  on 11/06/1447 AH.
 //

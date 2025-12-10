@@ -1,6 +1,5 @@
 //
 //  LetterProcessing.swift
-//  Team12
 //
 //  Created by leena almusharraf on 07/12/2025.
 //

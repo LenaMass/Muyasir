@@ -1,15 +1,13 @@
 //
 //  Untitled.swift
-//  Team12
 //
 //  Created by رحاب فهد  on 11/06/1447 AH.
 //
 
 import SwiftUI
 
-struct HistoryView: View {
+struct HistoryPageView: View {
     @StateObject var viewModel = HistoryViewModel()
-    @AppStorage("isDarkMode") private var isDarkMode = false
 
     var body: some View {
         NavigationStack {
@@ -20,7 +18,7 @@ struct HistoryView: View {
                         viewModel.sortByFavorites.toggle()
                     } label: {
                         Image(systemName: "line.3.horizontal.decrease.circle")
-                            .font(.system(size: 22))
+                            .font(.title3.bold())
                             .foregroundColor(.maingreen)
                     }
 
@@ -40,7 +38,7 @@ struct HistoryView: View {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 4) {
                                         Text(note.text)
-                                            .font(.system(size: 16))
+                                            .font(.body)
                                             .foregroundColor(.primary)
                                             .lineLimit(2)
 

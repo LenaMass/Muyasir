@@ -1,6 +1,5 @@
 //
 //  SimplifierService.swift
-//  Team12
 //
 //  Created by Shahad Alharbi on 11/27/25.
 //

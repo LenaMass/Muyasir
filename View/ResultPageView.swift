@@ -1,10 +1,10 @@
 import SwiftUI
 import UIKit
 
-struct ResultView: View {
+struct ResultPageView: View {
     @StateObject var viewModel: ResultViewModel
     @Namespace private var toggleNamespace
-    @AppStorage("isDarkMode") private var isDarkMode = false
+//    @AppStorage("isDarkMode") private var isDarkMode = false
 
     @State private var showCopiedFeedback = false
     @State private var navigateToHistory = false
@@ -27,12 +27,12 @@ struct ResultView: View {
                                     .fill(.ultraThinMaterial)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 14)
-                                            .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
+                                            .stroke(Color.black.opacity(0.15), lineWidth: 1) 
                                     )
                                     .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
 
                                 Image(systemName: "book.fill")
-                                    .font(.system(size: 20))
+                                    .font(.title3.bold())
                                     .foregroundColor(.maingreen)
                                     .accessibilityIdentifier("historyBookButton")
                             }
@@ -41,25 +41,25 @@ struct ResultView: View {
 
                         Spacer()
 
-                        Button {
-                            isDarkMode.toggle()
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 14)
-                                    .fill(.ultraThinMaterial)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 14)
-                                            .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
-                                    )
-                                    .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
-
-                                Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(.maingreen)
-                                    .accessibilityIdentifier("themeToggleButton")
-                            }
-                            .frame(width: 40, height: 40)
-                        }
+//                        Button {
+//                            isDarkMode.toggle()
+//                        } label: {
+//                            ZStack {
+//                                RoundedRectangle(cornerRadius: 14)
+//                                    .fill(.ultraThinMaterial)
+//                                    .overlay(
+//                                        RoundedRectangle(cornerRadius: 14)
+//                                            .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
+//                                    )
+//                                    .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
+//
+//                                Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
+//                                    .font(.title3.bold())
+//                                    .foregroundColor(.maingreen)
+//                                    .accessibilityIdentifier("themeToggleButton")
+//                            }
+//                            .frame(width: 40, height: 40)
+//                        }
                     }
                     .padding(.horizontal, 32)
                     .padding(.top, 20)
@@ -86,7 +86,7 @@ struct ResultView: View {
                                 }
 
                                 Image(systemName: "doc.text.fill")
-                                    .font(.system(size: 22))
+                                    .font(.title3.bold())
                                     .foregroundColor(.white)
                                     .opacity(viewModel.isHandMode ? 0.5 : 1.0)
                             }
@@ -112,7 +112,7 @@ struct ResultView: View {
                                 }
 
                                 Image(systemName: "hand.raised.fill")
-                                    .font(.system(size: 22))
+                                    .font(.title3.bold())
                                     .foregroundColor(.white)
                                     .opacity(viewModel.isHandMode ? 1.0 : 0.5)
                             }
@@ -170,7 +170,7 @@ struct ResultView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             } else {
                                 Text(viewModel.outputText)
-                                    .font(.system(size: 18))
+                                    .font(.body)
                                     .foregroundColor(.primary)
                                     .frame(maxWidth: .infinity, alignment: .topLeading)
                                     .padding()
@@ -198,7 +198,7 @@ struct ResultView: View {
                                 }
                             } label: {
                                 Image(systemName: "square.and.arrow.down")
-                                    .font(.system(size: 24, weight: .medium))
+                                    .font(.title3.bold())
                                     .foregroundColor(.white)
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 16)
@@ -213,7 +213,7 @@ struct ResultView: View {
 
                         if showCopiedFeedback {
                             Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 32))
+                                .font(.title3.bold())
                                 .foregroundColor(.maingreen)
                                 .transition(.scale.combined(with: .opacity))
                         }
@@ -224,9 +224,9 @@ struct ResultView: View {
                 }
             }
             .environment(\.layoutDirection, .rightToLeft)
-            .preferredColorScheme(isDarkMode ? .dark : .light)
+//            .preferredColorScheme(isDarkMode ? .dark : .light)
             .navigationDestination(isPresented: $navigateToHistory) {
-                HistoryView()
+                HistoryPageView()
             }
         }
         .navigationTitle("النتيجة")
@@ -235,5 +235,5 @@ struct ResultView: View {
 }
 
 #Preview {
-    ResultView(viewModel: ResultViewModel(simplifiedText: "هنا يظهر النص المبسط من السيرفر."))
+    ResultPageView(viewModel: ResultViewModel(simplifiedText: "هنا يظهر النص المبسط من السيرفر."))
 }

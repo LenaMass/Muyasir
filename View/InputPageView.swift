@@ -1,11 +1,51 @@
 import SwiftUI
+import UIKit
 
-struct inputpage: View {
+
+struct RTLTextEditor: UIViewRepresentable {
+    @Binding var text: String
+
+    func makeUIView(context: Context) -> UITextView {
+        let view = UITextView()
+        view.textAlignment = .right
+        view.semanticContentAttribute = .forceRightToLeft
+        view.font = UIFont.preferredFont(forTextStyle: .body)
+        view.isScrollEnabled = true
+        view.backgroundColor = .clear
+        view.delegate = context.coordinator
+        return view
+    }
+
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        if uiView.text != text {
+            uiView.text = text
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, UITextViewDelegate {
+        var parent: RTLTextEditor
+        init(_ parent: RTLTextEditor) {
+            self.parent = parent
+        }
+
+        func textViewDidChange(_ textView: UITextView) {
+            parent.text = textView.text
+        }
+    }
+}
+struct InputPageView: View {
     @StateObject private var viewModel = InputPageViewModel()
-    @AppStorage("isDarkMode") private var isDarkMode = false
+//    @AppStorage("isDarkMode") private var isDarkMode = false
     @State private var showHistory = false
     @FocusState private var isTextEditorFocused: Bool   // focus for keyboard
 
+    
+
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 32) {
@@ -23,7 +63,7 @@ struct inputpage: View {
                                 .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
                             
                             Image(systemName: "book.fill")
-                                .font(.system(size: 20))
+                                .font(.title3.bold())
                                 .foregroundColor(.maingreen)
                         }
                         .frame(width: 40, height: 40)
@@ -32,31 +72,32 @@ struct inputpage: View {
                     Spacer()
 
                     Text(" الإدخال")
-                        .font(.system(size: 20, weight: .bold))
+                        .font(.title3.bold())
                         .foregroundColor(.primary)
 
                     Spacer()
 
-                    Button {
-                        withAnimation(.easeInOut(duration: 0.25)) {
-                            isDarkMode.toggle()
-                        }
-                    } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 14)
-                                .fill(.ultraThinMaterial)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 14)
-                                        .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
-                                )
-                                .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
-                            
-                            Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
-                                .font(.system(size: 20))
-                                .foregroundColor(.maingreen)
-                        }
-                        .frame(width: 40, height: 40)
-                    }
+//                    Button {
+//                        withAnimation(.easeInOut(duration: 0.25)) {
+//                            isDarkMode.toggle()
+//                        }
+//                    } label: {
+//                        ZStack {
+//                            RoundedRectangle(cornerRadius: 14)
+//                                .fill(.ultraThinMaterial)
+//                                .overlay(
+//                                    RoundedRectangle(cornerRadius: 14)
+//                                        .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
+//                                )
+//                                .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
+//                            
+//                            Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
+//                                .font(.title3.bold())
+//
+//                                .foregroundColor(.maingreen)
+//                        }
+//                        .frame(width: 40, height: 40)
+//                    }
                 }
                 .padding(.horizontal, 30)
                 .padding(.top, 30)
@@ -77,31 +118,30 @@ struct inputpage: View {
                 }
                 .environment(\.layoutDirection, .rightToLeft)
                 .padding(.top, 10)
-
+                
                 ZStack(alignment: .topTrailing) {
                     RoundedRectangle(cornerRadius: 32, style: .continuous)
-                        .fill(Color(.secondarySystemBackground)) // adaptive background
-                        .shadow(color: .black.opacity(0.08), radius: 10, x: 0, y: 6)
+                        .fill(Color(.secondarySystemBackground))
                         .frame(height: 260)
-                    
-                    TextEditor(text: $viewModel.text)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 16)
-                        .frame(height: 260)
-                        .scrollContentBackground(.hidden)
-                        .background(Color.clear)
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(.primary)              // adaptive text color
-                        .focused($isTextEditorFocused)          // bind focus
+
                     
                     if viewModel.text.isEmpty {
-                        Text("السلام عليكم ...")
-                            .foregroundColor(.secondary)        // adaptive placeholder
+                        Text("اكتب هنا")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.trailing)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.top, 20)
-                            .padding(.trailing, 24)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .padding(.leading, 24)
                     }
+
+                    RTLTextEditor(text: $viewModel.text)
+                        .font(.body)
+                        .frame(height: 260)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 16)
                 }
+
                 .padding(.horizontal, 32)
                 
                 if let errorMessage = viewModel.errorMessage {
@@ -125,7 +165,7 @@ struct inputpage: View {
                                 .tint(.white)
                         } else {
                             Image(systemName: "arrow.right")
-                                .font(.system(size: 24, weight: .medium))
+                                .font(.title3.bold())
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -146,24 +186,26 @@ struct inputpage: View {
                 .padding(.bottom, 32)
                 .navigationDestination(isPresented: $viewModel.shouldNavigate) {
                     if let simplified = viewModel.simplifiedText {
-                        ResultView(viewModel: ResultViewModel(simplifiedText: simplified))
+                        ResultPageView(viewModel: ResultViewModel(simplifiedText: simplified))
                     }
                 }
             }
             .environment(\.layoutDirection, .rightToLeft)
             .background(Color(.systemBackground))   // page background adapts
-            .contentShape(Rectangle())              // so taps hit empty areas too
+            .contentShape(Rectangle())
             .onTapGesture {
-                isTextEditorFocused = false         // tap outside to dismiss keyboard
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
+                                                to: nil, from: nil, for: nil)
             }
+
             .navigationDestination(isPresented: $showHistory) {
-                HistoryView()
+                HistoryPageView()
             }
         }
-        .preferredColorScheme(isDarkMode ? .dark : .light)
+//        .preferredColorScheme(isDarkMode ? .dark : .light)
     }
 }
 
 #Preview {
-    inputpage()
+    InputPageView()
 }
