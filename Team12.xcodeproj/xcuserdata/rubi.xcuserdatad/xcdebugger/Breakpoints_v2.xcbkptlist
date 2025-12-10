@@ -21,19 +21,29 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.AddressBreakpoint">
          <BreakpointContent
-            uuid = "5F4E6798-0CDD-476B-B8E9-E9CE98483E34"
+            uuid = "D985F226-066A-437A-B49B-E0D0CC5F1F0B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "View/inputpage.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2"
-            endingLineNumber = "2"
-            landmarkName = "inputpage"
-            landmarkType = "14">
+            symbolName = "*0x101437038">
+            <Locations>
+               <Location
+                  uuid = "D985F226-066A-437A-B49B-E0D0CC5F1F0B - 9f9466b3bc20e8f0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Team12.inputpage.init() -&gt; Team12.inputpage"
+                  moduleName = "Team12.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rubi/Documents/Team12/View/inputpage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "3"
+                  endingLineNumber = "3">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

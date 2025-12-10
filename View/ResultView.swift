@@ -5,22 +5,22 @@ struct ResultView: View {
     @StateObject var viewModel: ResultViewModel
     @Namespace private var toggleNamespace
     @AppStorage("isDarkMode") private var isDarkMode = false
-    
+
     @State private var showCopiedFeedback = false
     @State private var navigateToHistory = false
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
                 Color(.systemBackground)
                     .ignoresSafeArea()
-                
+
                 VStack(spacing: 0) {
-                    
+
                     // Top bar
                     HStack {
-                        NavigationLink(isActive: $navigateToHistory) {
-                            HistoryView()
+                        Button {
+                            navigateToHistory = true
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 14)
@@ -30,7 +30,7 @@ struct ResultView: View {
                                             .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
                                     )
                                     .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
-                                
+
                                 Image(systemName: "book.fill")
                                     .font(.system(size: 20))
                                     .foregroundColor(.maingreen)
@@ -38,9 +38,9 @@ struct ResultView: View {
                             }
                             .frame(width: 40, height: 40)
                         }
-                        
+
                         Spacer()
-                        
+
                         Button {
                             isDarkMode.toggle()
                         } label: {
@@ -52,7 +52,7 @@ struct ResultView: View {
                                             .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
                                     )
                                     .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
-                                
+
                                 Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
                                     .font(.system(size: 20))
                                     .foregroundColor(.maingreen)
@@ -64,15 +64,14 @@ struct ResultView: View {
                     .padding(.horizontal, 32)
                     .padding(.top, 20)
                     .padding(.bottom, 22)
-                    
-                    
+
                     // Toggle
                     ZStack {
                         RoundedRectangle(cornerRadius: 22)
                             .fill(Color.maingreen.opacity(0.92))
                             .shadow(color: Color.black.opacity(0.18), radius: 8, x: 0, y: 4)
                             .frame(height: 52)
-                        
+
                         HStack(spacing: 0) {
                             ZStack {
                                 if !viewModel.isHandMode {
@@ -85,7 +84,7 @@ struct ResultView: View {
                                         .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 3)
                                         .matchedGeometryEffect(id: "toggle", in: toggleNamespace)
                                 }
-                                
+
                                 Image(systemName: "doc.text.fill")
                                     .font(.system(size: 22))
                                     .foregroundColor(.white)
@@ -99,7 +98,7 @@ struct ResultView: View {
                                     viewModel.isHandMode = false
                                 }
                             }
-                            
+
                             ZStack {
                                 if viewModel.isHandMode {
                                     RoundedRectangle(cornerRadius: 18)
@@ -111,7 +110,7 @@ struct ResultView: View {
                                         .shadow(color: Color.black.opacity(0.15), radius: 6, x: 0, y: 3)
                                         .matchedGeometryEffect(id: "toggle", in: toggleNamespace)
                                 }
-                                
+
                                 Image(systemName: "hand.raised.fill")
                                     .font(.system(size: 22))
                                     .foregroundColor(.white)
@@ -130,8 +129,7 @@ struct ResultView: View {
                     }
                     .padding(.horizontal, 32)
                     .padding(.bottom, 16)
-                    
-                    
+
                     // Title
                     HStack(spacing: 6) {
                         ForEach(["ا", "ل", "ن", "ت", "ي", "ج", "ة"], id: \.self) { letter in
@@ -143,8 +141,7 @@ struct ResultView: View {
                     }
                     .environment(\.layoutDirection, .rightToLeft)
                     .padding(.bottom, 18)
-                    
-                    
+
                     // Output / Hand mode
                     ZStack {
                         RoundedRectangle(cornerRadius: 26)
@@ -154,7 +151,7 @@ struct ResultView: View {
                                     .stroke(Color.gray.opacity(0.22), lineWidth: 1.5)
                             )
                             .shadow(color: Color.black.opacity(0.10), radius: 10, x: 0, y: 4)
-                        
+
                         ScrollView {
                             if viewModel.isHandMode {
                                 VStack(alignment: .leading, spacing: 10) {
@@ -170,8 +167,7 @@ struct ResultView: View {
                                     }
                                 }
                                 .padding()
-                                .frame(maxWidth: .infinity, alignment: .leading)   // ← fix scroll
-                                
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             } else {
                                 Text(viewModel.outputText)
                                     .font(.system(size: 18))
@@ -184,10 +180,9 @@ struct ResultView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 340)
                     .padding(.horizontal, 32)
-                    
-                    
+
                     Spacer()
-                    
+
                     VStack(spacing: 12) {
                         HStack(spacing: 16) {
                             Button {
@@ -215,14 +210,14 @@ struct ResultView: View {
                             )
                         }
                         .padding(.horizontal, 32)
-                        
+
                         if showCopiedFeedback {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 32))
                                 .foregroundColor(.maingreen)
                                 .transition(.scale.combined(with: .opacity))
                         }
-                        
+
                         Spacer().frame(height: 12)
                     }
                     .padding(.bottom, 28)
@@ -230,6 +225,9 @@ struct ResultView: View {
             }
             .environment(\.layoutDirection, .rightToLeft)
             .preferredColorScheme(isDarkMode ? .dark : .light)
+            .navigationDestination(isPresented: $navigateToHistory) {
+                HistoryView()
+            }
         }
         .navigationTitle("النتيجة")
         .navigationBarTitleDisplayMode(.inline)

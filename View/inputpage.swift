@@ -10,30 +10,25 @@ struct inputpage: View {
         NavigationStack {
             VStack(spacing: 32) {
                 HStack {
-                    ZStack {
-                        NavigationLink(destination: HistoryView(), isActive: $showHistory) {
-                            EmptyView()
+                    Button {
+                        showHistory = true
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 14)
+                                .fill(.ultraThinMaterial)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
+                                )
+                                .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
+                            
+                            Image(systemName: "book.fill")
+                                .font(.system(size: 20))
+                                .foregroundColor(.maingreen)
                         }
-
-                        Button {
-                            showHistory = true
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 14)
-                                    .fill(.ultraThinMaterial)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 14)
-                                            .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
-                                    )
-                                    .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
-                                
-                                Image(systemName: "book.fill")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(.maingreen)
-                            }
-                            .frame(width: 40, height: 40)
-                        }
+                        .frame(width: 40, height: 40)
                     }
+
                     Spacer()
 
                     Text(" الإدخال")
@@ -42,7 +37,6 @@ struct inputpage: View {
 
                     Spacer()
 
-                    
                     Button {
                         withAnimation(.easeInOut(duration: 0.25)) {
                             isDarkMode.toggle()
@@ -162,14 +156,14 @@ struct inputpage: View {
             .onTapGesture {
                 isTextEditorFocused = false         // tap outside to dismiss keyboard
             }
+            .navigationDestination(isPresented: $showHistory) {
+                HistoryView()
+            }
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
-        
     }
-    
 }
 
 #Preview {
     inputpage()
 }
-
