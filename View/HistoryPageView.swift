@@ -1,18 +1,26 @@
 //
-//  Untitled.swift
-//
-//  Created by رحاب فهد  on 11/06/1447 AH.
+//  HistoryPageView.swift
 //
 
 import SwiftUI
 
+// Wrap the ResultViewModel in an Identifiable object for .sheet(item:)
+struct SheetItem: Identifiable {
+    let id = UUID()
+    let viewModel: ResultViewModel
+}
+
 struct HistoryPageView: View {
     @StateObject var viewModel = HistoryViewModel()
+
+    // NEW — replaces showSheet & resultVM
+    @State private var sheetItem: SheetItem? = nil
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                // Top Bar
+
+                // ===== Top Bar =====
                 HStack {
                     Button {
                         viewModel.sortByFavorites.toggle()
@@ -24,16 +32,20 @@ struct HistoryPageView: View {
 
                     Spacer()
                 }
-                .padding( 30)
+                .padding(30)
                 .padding(.top, 20)
                 .padding(.bottom, 10)
 
-                // Notes List
+                // ===== History Cards =====
                 ScrollView {
                     VStack(spacing: 16) {
                         ForEach(viewModel.sortedNotes) { note in
                             Button {
-                                // Navigate to note detail (optional)
+
+                                // Create VM + Assign the sheet item
+                                let vm = ResultViewModel(simplifiedText: note.text)
+                                sheetItem = SheetItem(viewModel: vm)
+
                             } label: {
                                 HStack {
                                     VStack(alignment: .leading, spacing: 4) {
@@ -73,6 +85,11 @@ struct HistoryPageView: View {
             }
             .background(Color(.systemBackground))
             .environment(\.layoutDirection, .rightToLeft)
+
+            // ===== FIXED SHEET — No blank first time =====
+            .sheet(item: $sheetItem) { item in
+                HistoryDetailSheetView(viewModel: item.viewModel)
+            }
         }
         .navigationTitle("المحفوظات")
         .navigationBarTitleDisplayMode(.inline)
