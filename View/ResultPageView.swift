@@ -27,9 +27,9 @@ struct ResultPageView: View {
                         Spacer()
 
                         // العنوان بالنص
-                        Text("النتيجة")
-                            .font(.title3.bold())
-                            .foregroundColor(.primary)
+//                        Text("النتيجة")
+//                            .font(.title3.bold())
+//                            .foregroundColor(.primary)
 
                         Spacer()
 
