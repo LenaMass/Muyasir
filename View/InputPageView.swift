@@ -61,7 +61,7 @@ struct InputPageView: View {
                                         .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
                                 )
                                 .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
-                            
+
                             Image(systemName: "book.fill")
                                 .font(.title3.bold())
                                 .foregroundColor(.maingreen)
@@ -71,37 +71,18 @@ struct InputPageView: View {
 
                     Spacer()
 
-                    Text(" الإدخال")
+                    Text("الإدخال")
                         .font(.title3.bold())
                         .foregroundColor(.primary)
 
                     Spacer()
 
-//                    Button {
-//                        withAnimation(.easeInOut(duration: 0.25)) {
-//                            isDarkMode.toggle()
-//                        }
-//                    } label: {
-//                        ZStack {
-//                            RoundedRectangle(cornerRadius: 14)
-//                                .fill(.ultraThinMaterial)
-//                                .overlay(
-//                                    RoundedRectangle(cornerRadius: 14)
-//                                        .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
-//                                )
-//                                .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
-//                            
-//                            Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
-//                                .font(.title3.bold())
-//
-//                                .foregroundColor(.maingreen)
-//                        }
-//                        .frame(width: 40, height: 40)
-//                    }
+                    Color.clear
+                        .frame(width: 40, height: 40)
                 }
                 .padding(.horizontal, 30)
                 .padding(.top, 30)
-                
+
                 Spacer(minLength: 40)
                 
                 HStack(spacing: 8) {
@@ -116,7 +97,7 @@ struct InputPageView: View {
                         }
                     }
                 }
-                .environment(\.layoutDirection, .rightToLeft)
+                
                 .padding(.top, 10)
                 
                 ZStack(alignment: .topTrailing) {
@@ -124,15 +105,13 @@ struct InputPageView: View {
                         .fill(Color(.secondarySystemBackground))
                         .frame(height: 260)
 
-                    
                     if viewModel.text.isEmpty {
                         Text("اكتب هنا")
                             .font(.body)
                             .foregroundColor(.secondary)
-                            .multilineTextAlignment(.trailing)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
                             .padding(.top, 20)
-                            .padding(.leading, 24)
+                            .padding(.trailing, 24)
                     }
 
                     RTLTextEditor(text: $viewModel.text)
@@ -190,7 +169,6 @@ struct InputPageView: View {
                     }
                 }
             }
-            .environment(\.layoutDirection, .rightToLeft)
             .background(Color(.systemBackground))   // page background adapts
             .contentShape(Rectangle())
             .onTapGesture {

@@ -17,8 +17,23 @@ struct ResultPageView: View {
 
                 VStack(spacing: 0) {
 
+                   
                     // Top bar
                     HStack {
+                        // عنصر شفاف يمين عشان يوازن عرض زر الكتاب
+                        Color.clear
+                            .frame(width: 40, height: 40)
+
+                        Spacer()
+
+                        // العنوان بالنص
+                        Text("النتيجة")
+                            .font(.title3.bold())
+                            .foregroundColor(.primary)
+
+                        Spacer()
+
+                        // زر الكتاب — بيطلع يسار في RTL
                         Button {
                             navigateToHistory = true
                         } label: {
@@ -27,7 +42,7 @@ struct ResultPageView: View {
                                     .fill(.ultraThinMaterial)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 14)
-                                            .stroke(Color.black.opacity(0.15), lineWidth: 1) 
+                                            .stroke(Color.black.opacity(0.15), lineWidth: 1)
                                     )
                                     .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
 
@@ -38,28 +53,6 @@ struct ResultPageView: View {
                             }
                             .frame(width: 40, height: 40)
                         }
-
-                        Spacer()
-
-//                        Button {
-//                            isDarkMode.toggle()
-//                        } label: {
-//                            ZStack {
-//                                RoundedRectangle(cornerRadius: 14)
-//                                    .fill(.ultraThinMaterial)
-//                                    .overlay(
-//                                        RoundedRectangle(cornerRadius: 14)
-//                                            .stroke(Color.white.opacity(0.6), lineWidth: 0.8)
-//                                    )
-//                                    .shadow(color: Color.black.opacity(0.12), radius: 6, x: 0, y: 3)
-//
-//                                Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
-//                                    .font(.title3.bold())
-//                                    .foregroundColor(.maingreen)
-//                                    .accessibilityIdentifier("themeToggleButton")
-//                            }
-//                            .frame(width: 40, height: 40)
-//                        }
                     }
                     .padding(.horizontal, 32)
                     .padding(.top, 20)

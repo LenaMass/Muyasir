@@ -21,20 +21,35 @@ struct HistoryPageView: View {
             VStack(spacing: 0) {
 
                 // ===== Top Bar =====
-                HStack {
-                    Button {
-                        viewModel.sortByFavorites.toggle()
-                    } label: {
-                        Image(systemName: "line.3.horizontal.decrease.circle")
-                            .font(.title3.bold())
-                            .foregroundColor(.maingreen)
-                    }
+                      HStack {
+                          Button {
+                              viewModel.sortByFavorites.toggle()
+                          } label: {
+                              ZStack {
+                                  RoundedRectangle(cornerRadius: 14)
+                                      .fill(.ultraThinMaterial)
+                                      .overlay(
+                                          RoundedRectangle(cornerRadius: 14)
+                                              .stroke(Color.black.opacity(0.15), lineWidth: 1)
+                                      )
+                                      .shadow(color: Color.black.opacity(0.12),
+                                              radius: 6, x: 0, y: 3)
 
-                    Spacer()
-                }
-                .padding(30)
-                .padding(.top, 20)
-                .padding(.bottom, 10)
+                                  Image(systemName: "line.3.horizontal.decrease.circle")
+                                      .font(.title3.bold())
+                                      .foregroundColor(.maingreen)
+                              }
+                              .frame(width: 40, height: 40)
+                          }
+                          .padding(.leading, 300)
+
+                          Spacer()
+                      }
+                      
+                      .padding(.horizontal, 30)
+                      .padding(.top, 20)
+                      .padding(.bottom, 30)
+
 
                 // ===== History Cards =====
                 ScrollView {
