@@ -27,4 +27,9 @@ final class HistoryViewModel: ObservableObject {
     func reload() {
         notes = HistoryStore.shared.load()
     }
+    func delete(_ entry: HistoryEntry) {
+        notes.removeAll { $0.id == entry.id }
+        HistoryStore.shared.save(notes)
+    }
+
 }
