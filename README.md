@@ -1,4 +1,4 @@
-<h1>🤟 Muyasir — مُيَسِّر</h1>
+<h1> Muyasir — مُيَسِّر</h1>
 <h3>
 An accessibility-focused iOS application designed to support 
 individuals with hearing loss in reading and comprehending 
