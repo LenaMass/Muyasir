@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Muyasir — مُيَسِّر</h1>
+<h1> Muyasir — مُيَسِّر</h1>
 <h3>
 An accessibility-focused iOS application designed to support 
 individuals with hearing loss in reading and comprehending 
@@ -11,7 +11,7 @@ Making Arabic digital content accessible and dignified
 for the Saudi deaf and hard-of-hearing community.
 </p>
 </div>
-<hr>
+
 <h1>About The Project</h1>
 <p>
 Muyasir bridges the accessibility gap for Arabic-speaking 
@@ -28,7 +28,7 @@ representations using hand sign emojis that correspond to SSL
 letters and words — creating a more accessible and dignified 
 reading experience.
 </p>
-<hr>
+
 <h1>Features</h1>
 <ul>
 <li>AI-powered Arabic text simplification into clear, readable language</li>
@@ -38,7 +38,7 @@ reading experience.
 <li>Inclusive, accessibility-first design principles</li>
 <li>Built specifically for the Saudi deaf and hard-of-hearing community</li>
 </ul>
-<hr>
+
 <h1>Goals</h1>
 <p>The main goal of Muyasir is to make Arabic digital content:</p>
 <ul>
@@ -48,7 +48,7 @@ reading experience.
 <li>Dignified and intuitive to use</li>
 <li>Available in both Arabic and accessible formats</li>
 </ul>
-<hr>
+
 <h1>🛠️ Built With</h1>
 <p>
 <img src="https://img.shields.io/badge/Platform-iOS-black?style=for-the-badge&logo=apple" />
@@ -57,7 +57,7 @@ reading experience.
 <img src="https://img.shields.io/badge/IDE-Xcode-blue?style=for-the-badge&logo=xcode" />
 <img src="https://img.shields.io/badge/AI-Text%20Simplification-purple?style=for-the-badge" />
 </p>
-<hr>
+
 <h1>App Preview</h1>
 <div align="center">
 <table>
@@ -80,10 +80,9 @@ reading experience.
 </tr>
 </table>
 </div>
-<hr>
+
 <h1>My Role</h1>
-<p>This was a collaborative team project built as part of 
-the Apple Developer Academy Tuwaq program. My specific 
+<p>This was a collaborative team project. My specific 
 contributions:</p>
 <ul>
 <li>Implemented the full UI design in SwiftUI from Figma mockups</li>
@@ -91,7 +90,7 @@ contributions:</p>
 <li>Ensured complete dark mode and light mode compatibility across all screens</li>
 <li>Contributed to inclusive design implementation ensuring accessibility standards were met</li>
 </ul>
-<hr>
+
 <h1>Future Improvements</h1>
 <ul>
 <li>Full SSL video demonstrations per word</li>
@@ -103,14 +102,14 @@ contributions:</p>
 <li>Camera-based sign language recognition</li>
 <li>Integration with Saudi accessibility standards</li>
 </ul>
-<hr>
+
 <h1>Contributing</h1>
 <p>
 If you would like to improve the project or suggest 
 accessibility enhancements, feel free to open an issue 
 or submit a pull request.
 </p>
-<hr>
+
 <div align="center">
 <h3>Making Communication Accessible for Every Saudi</h3>
 </div>
