@@ -103,13 +103,4 @@ contributions:</p>
 <li>Integration with Saudi accessibility standards</li>
 </ul>
 
-<h1>Contributing</h1>
-<p>
-If you would like to improve the project or suggest 
-accessibility enhancements, feel free to open an issue 
-or submit a pull request.
-</p>
 
-<div align="center">
-<h3>Making Communication Accessible for Every Saudi</h3>
-</div>
