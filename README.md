@@ -1,4 +1,5 @@
-<h1> Muyasir — مُيَسِّر</h1>
+<div align="center">
+<h1>Muyasir — مُيَسِّر</h1>
 <h3>
 An accessibility-focused iOS application designed to support 
 individuals with hearing loss in reading and comprehending 
@@ -30,20 +31,16 @@ reading experience.
 <hr>
 <h1>Features</h1>
 <ul>
-<li>AI-powered Arabic text simplification into clear, 
-readable language</li>
-<li>Saudi Sign Language (SSL) visual translation via 
-correlated hand sign emojis</li>
+<li>AI-powered Arabic text simplification into clear, readable language</li>
+<li>Saudi Sign Language (SSL) visual translation via correlated hand sign emojis</li>
 <li>Full Arabic localisation with RTL layout support</li>
 <li>Complete dark mode and light mode support</li>
 <li>Inclusive, accessibility-first design principles</li>
-<li>Built specifically for the Saudi deaf and 
-hard-of-hearing community</li>
+<li>Built specifically for the Saudi deaf and hard-of-hearing community</li>
 </ul>
 <hr>
 <h1>Goals</h1>
-<p>The main goal of Muyasir is to make Arabic digital 
-content:</p>
+<p>The main goal of Muyasir is to make Arabic digital content:</p>
 <ul>
 <li>Accessible for individuals with hearing loss</li>
 <li>Easier to understand through SSL visual references</li>
@@ -66,18 +63,17 @@ content:</p>
 <table>
 <tr>
 <td align="center">
-<img width="260" height="560" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-03 at 20 19 08-portrait" src="https://github.com/user-attachments/assets/7512b20d-73a1-465c-8e3e-2978a4d9c9fc" />
+<img width="260" height="560" alt="Text Input" src="https://github.com/user-attachments/assets/7512b20d-73a1-465c-8e3e-2978a4d9c9fc" />
 <br><br>
 <b>Text Input</b>
 </td>
 <td align="center">
-<img width="260" height="560" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-03 at 20 18 22-portrait" src="https://github.com/user-attachments/assets/778fa133-b2c2-471c-a954-081376dc8a10" />
- 
+<img width="260" height="560" alt="SSL Translation" src="https://github.com/user-attachments/assets/778fa133-b2c2-471c-a954-081376dc8a10" />
 <br><br>
 <b>SSL Translation</b>
 </td>
 <td align="center">
-<img width="260" height="560" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-03 at 20 18 27-portrait" src="https://github.com/user-attachments/assets/075449e0-ba57-4462-bd73-aee3cc7f6e12" />
+<img width="260" height="560" alt="Saved Texts" src="https://github.com/user-attachments/assets/075449e0-ba57-4462-bd73-aee3cc7f6e12" />
 <br><br>
 <b>Saved Texts</b>
 </td>
@@ -90,14 +86,10 @@ content:</p>
 the Apple Developer Academy Tuwaq program. My specific 
 contributions:</p>
 <ul>
-<li>Implemented the full UI design in SwiftUI from 
-Figma mockups</li>
-<li>Built Arabic localisation and RTL layout support 
-throughout the entire app</li>
-<li>Ensured complete dark mode and light mode 
-compatibility across all screens</li>
-<li>Contributed to inclusive design implementation 
-ensuring accessibility standards were met</li>
+<li>Implemented the full UI design in SwiftUI from Figma mockups</li>
+<li>Built Arabic localisation and RTL layout support throughout the entire app</li>
+<li>Ensured complete dark mode and light mode compatibility across all screens</li>
+<li>Contributed to inclusive design implementation ensuring accessibility standards were met</li>
 </ul>
 <hr>
 <h1>Future Improvements</h1>
